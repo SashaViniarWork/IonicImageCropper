@@ -7,8 +7,19 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <button
+    ion-button
+    block
+    color="primary"
+    (click)="selectImage()">Select an Image
+  </button>
+  <img-cropper #cropper [image]="data" [settings]="cropperSettings" (onCrop)="handleCropping($event)"></img-cropper>
+  <div *ngIf="data.image">
+    <img [src]="data.image" [width]="croppedWidth" [height]="croppedHeight">
+  </div>
+
+  <button
+    *ngIf="canSave" ion-button block color="secondary" (click)="saveImage()">Save Image </button>
+
+
 </ion-content>
